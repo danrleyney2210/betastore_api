@@ -6,10 +6,9 @@ import { listProducts } from './useCases/products/listProducts';
 import { createProduct } from './useCases/products/createProduct';
 import multer from 'multer';
 import { listProductsByCategories } from './useCases/categories/listProductsByCategories';
-
-
 import { listIngredients } from './useCases/ingredients/listIngredients';
 import { createIngredients } from './useCases/ingredients/createIngredients';
+import { deleteIngredient } from './useCases/ingredients/deleteIngredient';
 
 
 const upload = multer({
@@ -41,13 +40,12 @@ router.post('/products', upload.single('image'), createProduct);
 //Get products by Category
 router.get('/categories/:categoryId/products', listProductsByCategories);
 
-
-
-
-
 //List ingredients
 router.get('/ingredients', listIngredients);
 
 //Post ingredients
 router.post('/ingredients', createIngredients);
+
+//Delete ingredients
+router.delete('/ingredients', deleteIngredient);
 
