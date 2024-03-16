@@ -10,8 +10,10 @@ const url = process.env.MONGODB_URL || 'localhost:27017';
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 
+const newUrl = `mongodb+srv://${username}:${password}@betastore.bvyztzw.mongodb.net/`;
+
 mongoose
-  .connect(url, { auth: { username, password }})
+  .connect(newUrl)
   .then(() => {
     const port = process.env.PORT || 3001;
 
