@@ -1,13 +1,17 @@
 import express from 'express';
-import { config } from 'dotenv'
+import { config } from 'dotenv';
 import mongoose from 'mongoose';
 import { router } from './app/router';
 import path from 'node:path';
 
-config()
+config();
+
+const url = process.env.MONGODB_URL || 'localhost:27017';
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
 
 mongoose
-  .connect('mongodb://localhost:27017')
+  .connect(url, { auth: { username, password }})
   .then(() => {
     const port = process.env.PORT || 3001;
 
@@ -34,6 +38,10 @@ mongoose
       console.log(`🔥 Server is running on http://localhost:${port}`);
     });
   })
-  .catch(() => console.log('❌ Error connecting to MongoDB'));
+  .catch(() => {console.log('❌ Error connecting to MongoDB');
+    console.log(url);
+    console.log(username);
+    console.log(password);
+  });
 
 
