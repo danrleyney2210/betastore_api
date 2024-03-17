@@ -10,7 +10,7 @@ const url = process.env.MONGODB_URL || 'localhost:27017';
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 
-const newUrl = `mongodb+srv://${username}:${password}@betastore.bvyztzw.mongodb.net/`;
+const newUrl = `mongodb+srv://${username}:${password}@${url}/`;
 
 mongoose
   .connect(newUrl)
